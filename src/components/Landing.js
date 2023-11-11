@@ -65,7 +65,9 @@
                 if (isValidEmail(part)) {
                     return <a key={index} href={`mailto:${part}`}>{part}</a>;
                 } else if (isValidWebsite(part)) {
-                    return <a key={index} href={part} target="_blank" rel="noopener noreferrer">{part}</a>;
+                    // Add "https://" if it's a valid website without a protocol
+                    const websiteLink = part.startsWith('http') ? part : `https://${part}`;
+                    return <a key={index} href={websiteLink} target="_blank" rel="noopener noreferrer">{part}</a>;
                 } else {
                     return part;
                 }
